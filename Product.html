@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopverse</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Font Awesome CSS for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+        }
+        .navbar .cart {
+            position: relative;
+        }
+        .cart-icon {
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+        }
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background: red;
+            color: white;
+            font-size: 14px;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+        .offer-container {
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .product-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        .product-card {
+            flex: 1 1 calc(33.33% - 20px);
+            background: #fff;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 350px; /* Ensure consistent height */
+        }
+
+        .product-card img {
+            width: 200px; /* Set a consistent width */
+            height: 200px; /* Set a consistent height */
+            object-fit: cover; /* Ensure images fit within the dimensions */
+            border-radius: 5px;
+            margin: 0 auto; /* Center the image horizontally */
+        }
+
+        .product-name {
+            margin: 10px 0;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .add-to-cart {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            color: #fff;
+            background: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .add-to-cart:hover {
+            background: #0056b3;
+        }
+        .offcanvas {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 300px;
+            height: 100%;
+            background: #fff;
+            box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            transition: right 0.3s ease-in-out;
+            padding: 20px;
+            z-index: 1000;
+        }
+        .offcanvas.open {
+            right: 0;
+        }
+        .offcanvas-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .offcanvas-body {
+            margin-top: 20px;
+        }
+        .cart-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .cart-total {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Shopverse</h1>
+        <div class="cart" onclick="toggleCart()">
+            <i class="fa fa-shopping-cart cart-icon"></i>
+            <span class="cart-badge" id="cart-count">0</span>
+        </div>
+    </div>
+
+    <div class="offer-container" id="productSection">
+        <div class="header">
+            <h1>Products</h1>
+        </div>
+        <div class="product-images">
+            <div class="product-card">
+                <img src="Media/usb.jpg" alt="USB">
+                <p class="product-name">USB</p>
+                <p class="product-price">₹500</p>
+                <a href="#" class="add-to-cart" onclick="addToCart('USB', 500)">Add to Cart</a>
+            </div>
+            <div class="product-card">
+                <img src="Media/headphones.jpg" alt="Headphones">
+                <p class="product-name">Headphones</p>
+                <p class="product-price">₹600</p>
+                <a href="#" class="add-to-cart" onclick="addToCart('Headphones', 600)">Add to Cart</a>
+            </div>
+            <div class="product-card">
+                <img src="Media/hairdryer.jpg" alt="Hairdryer">
+                <p class="product-name">Hairdryer</p>
+                <p class="product-price">₹1000</p>
+                <a href="#" class="add-to-cart" onclick="addToCart('Hairdryer', 1000)">Add to Cart</a>
+            </div>
+        </div>
+        <br>
+
+        <div class="product-images">
+            <div class="product-card">
+                <img src="Media/oppo.jpg" alt="USB">
+                <p class="product-name">Oppo Reno 6</p>
+                <p class="product-price">₹25000</p>
+                <a href="#" class="add-to-cart" onclick="addToCart('Oppo Reno 6', 25000)">Add to Cart</a>
+            </div>
+            <div class="product-card">
+                <img src="Media/samsung" alt="Headphones">
+                <p class="product-name">Samsung Galaxy M30</p>
+                <p class="product-price">₹18000</p>
+                <a href="#" class="add-to-cart" onclick="addToCart('Samsung Galaxy M30', 18000)">Add to Cart</a>
+            </div>
+            <div class="product-card">
+                <img src="Media/oneplus.jpg" alt="Hairdryer">
+                <p class="product-name">Oneplus 9 Pro</p>
+                <p class="product-price">₹30000</p>
+                <a href="#" class="add-to-cart" onclick="addToCart('Oneplus 9 Pro', 30000)">Add to Cart</a>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="product-images">
+            <div class="product-card">
+                <img src="Media/airpods.jpg" alt="USB">
+                <p class="product-name">Airpods</p>
+                <p class="product-price">₹800</p>
+                <a href="#" class="add-to-cart" onclick="addToCart('Airpods', 800)">Add to Cart</a>
+            </div>
+            <div class="product-card">
+                <img src="Media/wiredbluetooth.jpg" alt="Headphones">
+                <p class="product-name">Bluetooth Wired</p>
+                <p class="product-price">₹600</p>
+                <a href="#" class="add-to-cart" onclick="addToCart('Bluetooth Wired', 600)">Add to Cart</a>
+            </div>
+            <div class="product-card">
+                <img src="Media/charger.jpg" alt="Hairdryer">
+                <p class="product-name">Charger</p>
+                <p class="product-price">₹100</p>
+                <a href="#" class="add-to-cart" onclick="addToCart('Hairdryer', 1000)">Add to Cart</a>
+            </div>
+        </div>
+
+    <div id="cart-offcanvas" class="offcanvas">
+        <div class="offcanvas-header">
+            <h2>Cart</h2>
+            <button onclick="toggleCart()">Close</button>
+        </div>
+        <div class="offcanvas-body" id="cart-items">
+            <p>Your cart is empty.</p>
+        </div>
+        <div class="cart-total" id="cart-total">
+            Total: ₹0
+        </div>
+    </div>
+
+    <script>
+        let cartCount = 0;
+        let cartItems = [];
+
+        function addToCart(productName, productPrice) {
+            cartCount++;
+            document.getElementById('cart-count').textContent = cartCount;
+
+            const cartIndex = cartItems.findIndex(item => item.name === productName);
+            if (cartIndex > -1) {
+                cartItems[cartIndex].quantity++;
+            } else {
+                cartItems.push({ name: productName, price: productPrice, quantity: 1 });
+            }
+            renderCartItems();
+        }
+
+        function renderCartItems() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalElement = document.getElementById('cart-total');
+
+            cartItemsContainer.innerHTML = '';
+            let totalAmount = 0;
+
+            cartItems.forEach(item => {
+                const cartItemDiv = document.createElement('div');
+                cartItemDiv.className = 'cart-item';
+                cartItemDiv.innerHTML = `
+                    <p><strong>${item.name}</strong> x${item.quantity}</p>
+                    <p>Price: ₹${item.price * item.quantity}</p>
+                `;
+                cartItemsContainer.appendChild(cartItemDiv);
+                totalAmount += item.price * item.quantity;
+            });
+
+            cartTotalElement.textContent = `Total: ₹${totalAmount}`;
+        }
+
+        function toggleCart() {
+            const cart = document.getElementById('cart-offcanvas');
+            if (cart.classList.contains('open')) {
+                cart.classList.remove('open');
+            } else {
+                cart.classList.add('open');
+            }
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
