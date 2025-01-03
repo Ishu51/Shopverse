@@ -12,6 +12,7 @@
         body {
             font-family: Arial, sans-serif;
         }
+        /* Navigation Bar */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -20,14 +21,54 @@
             background-color: #007bff;
             color: white;
         }
-        .navbar .cart {
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%; /* Circular logo */
+            object-fit: cover; /* Ensures proper scaling */
+            margin-right: 10px; /* Space between logo and text */
+        }
+
+        .navbar-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar-links li {
+            display: inline;
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            padding: 5px 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            background-color: white;
+            color: #007bff;
+            border-radius: 5px;
+        }
+
+        .cart {
             position: relative;
         }
+
         .cart-icon {
             font-size: 24px;
             color: white;
             cursor: pointer;
         }
+
         .cart-badge {
             position: absolute;
             top: -5px;
@@ -42,6 +83,10 @@
             align-items: center;
             border-radius: 50%;
         }
+        /* Navbar end */
+
+
+        
         .offer-container {
             padding: 20px;
             background-color: #f9f9f9;
@@ -135,13 +180,30 @@
     </style>
 </head>
 <body>
-    <div class="navbar">
+    <!-- Navbar -->
+<!-- Navbar -->
+<div class="navbar">
+    <!-- Logo Section -->
+    <div class="navbar-logo">
+        <img src="Media/shopverselogo.jpg" alt="Shopverse Logo">
         <h1>Shopverse</h1>
-        <div class="cart" onclick="toggleCart()">
-            <i class="fa fa-shopping-cart cart-icon"></i>
-            <span class="cart-badge" id="cart-count">0</span>
-        </div>
     </div>
+
+    <!-- Navigation Links -->
+    <ul class="navbar-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Product.html">Product</a></li>
+        <li><a href="Contactus.html">Contact</a></li>
+        <li><a href="Login.html">Login</a></li>
+    </ul>
+    <!-- Navbar ends -->
+
+    <!-- Cart Icon -->
+    <div class="cart" onclick="toggleCart()">
+        <i class="fa fa-shopping-cart cart-icon"></i>
+        <span class="cart-badge" id="cart-count">0</span>
+    </div>
+</div>
 
     <div class="offer-container" id="productSection">
         <div class="header">
