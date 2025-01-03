@@ -20,6 +20,39 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: rgb(245, 245, 148);
 }
+/* Navbar */
+.navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: blue;
+            padding: 10px 20px;
+        }
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+        }
+        .navbar-links {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+        .navbar-links a {
+            text-decoration: none;
+            color: white;
+        }
+        .logo {
+    width: 50px; /* Set the size of the logo */
+    height: 50px; /* Match width for a perfect square */
+    border-radius: 50%; /* Makes it a circle */
+    object-fit: cover; /* Ensures the image scales properly */
+    border: 2px solid white; /* Optional: Add a border for styling */
+}
+
+/* Navbar end */
+
+
+
 
 /* Contact Section */
 .contact-section {
@@ -116,7 +149,7 @@ body {
     flex: 1;
     min-width: 250px;
     max-width: 500px;
-    background-color: black;
+    background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -180,7 +213,7 @@ body {
 .contact-footer {
     text-align: center;
     padding: 40px 0;
-    background-color: yellow;
+    background-color: blue;
     border-top: 1px solid #ddd;
 }
 
@@ -209,6 +242,25 @@ body {
 
 </style>
 <body>
+
+    <!-- Navbar Start -->
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="Media/shopverselogo.jpg" alt="Logo" class="logo">
+            <span class="logo-text">Shopverse</span>
+        </div>
+        
+        
+        <ul class="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Product.html">Product</a></li>
+            <li><a href="Contactus.html">Contact</a></li>
+        </ul>
+    </nav>
+
+
+     <!-- Navbar End -->
 
 <!-- Contact Section -->
 <section class="contact-section">
